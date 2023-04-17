@@ -1,0 +1,30 @@
+
+.logo {
+  text-align: center;
+  padding: 1.3rem 1rem;
+  img {
+    width: 200px;
+  }
+}
+.mat-divider {
+  border-top-width: 2px !important;
+  border-color: rgb(21, 20, 20);
+}
+
+ul{
+  list-style: none;
+
+  li{
+    padding: 10px 0px;
+    width: 100%;
+
+  }
+  li:hover{
+    color: red;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  .router-link-active{
+    color: red;
+  }
+}

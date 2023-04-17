@@ -1,0 +1,26 @@
+{
+  "employees": [
+    {
+      "id": "sn3nsf9",
+      "firstName": "Shreya",
+      "lastName": "Bajbai",
+      "email": "test@gamil.com",
+      "dob": "15/03/2022",
+      "gender": "Female",
+      "education": "B.Tech",
+      "experience": "1",
+      "package": "2"
+    },
+    {
+      "firstName": "Sanjay",
+      "lastName": "Das",
+      "email": "sanjay@gmail.com",
+      "dob": "2023-04-09T18:30:00.000Z",
+      "gender": "male",
+      "education": "M.Tech",
+      "experience": 1,
+      "package": 2,
+      "id": "MXEq2rK"
+    }
+  ]
+}

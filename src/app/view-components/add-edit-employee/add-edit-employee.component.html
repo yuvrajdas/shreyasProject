@@ -1,0 +1,92 @@
+<div class="container">
+
+  <div class="form-wrapper">
+    <div mat-dialog-title>
+      <h4>Employee Form</h4>
+    </div>
+    <form [formGroup]="employeeForm">
+      <!-- First Name -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" placeholder="Shreya" formControlName="firstName">
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Ex. Bajpai" formControlName="lastName">
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
+      </mat-form-field>
+
+      <!-- DOB -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Date of birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Gender -->
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-label><b>Gender</b></mat-label>
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="others">Others</mat-radio-button>
+      </mat-radio-group>
+
+      <!-- Education -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Education</mat-label>
+        <mat-select formControlName="education">
+          <mat-option >Select Eductiona</mat-option>
+          <mat-option  value="{{education}}" *ngFor="let education of educations">{{education}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Skills -->
+      <!-- <mat-form-field class="full-width" class="example-chip-list" appearance="fill">
+        <mat-label>Favorite Fruits</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+            {{fruit}}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="New Fruit..." #fruitInput [formControl]="fruitCtrl" [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)" />
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+            {{fruit}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field> -->
+
+      <!-- Experience -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Experience</mat-label>
+        <input matInput placeholder="Ex. 4" type="number" formControlName="experience">
+      </mat-form-field>
+
+      <!-- Package -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Package</mat-label>
+        <input matInput placeholder="Ex. 12" type="number" formControlName="package">
+        <mat-hint>In rupees</mat-hint>
+      </mat-form-field>
+      <div style="margin-top:10px; display: flex; justify-content: center;" >
+        <button (click)="submitForm()" [disabled]="employeeForm.invalid" mat-button  style="height: 40px;width:150px; background-color: rgb(102, 102, 230);" >Submit</button>
+      </div>
+    </form>
+
+
+  </div>
+</div>

@@ -1,0 +1,17 @@
+ <nav>
+  <div class="logo">
+    <img src="" alt="Your logo" />
+  </div>
+  <mat-divider></mat-divider><br>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Select </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul>
+        <li [routerLink]="['/employee-lists']" routerLinkActive="router-link-active" >All Users</li>
+        <li [routerLink]="['/employee-mangement']" routerLinkActive="router-link-active" >Add User</li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
+</nav>
