@@ -10,6 +10,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { AddEditEmployeeComponent } from './view-components/add-edit-employee/add-edit-employee.component';
 import { ListsEmployeeComponent } from './view-components/lists-employee/lists-employee.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: MatDialogRef, useValue: {}}, { provide: MAT_DIALOG_DATA, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

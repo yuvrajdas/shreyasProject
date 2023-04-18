@@ -1,22 +1,40 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { AddEditEmployeeComponent } from '../add-edit-employee/add-edit-employee.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lists-employee',
   templateUrl: './lists-employee.component.html',
   styleUrls: ['./lists-employee.component.scss']
 })
-export class ListsEmployeeComponent {
+export class ListsEmployeeComponent implements OnInit{
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email',"dob","gender","education","experience","package","action"];
   dataSource = new MatTableDataSource([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private empService:EmployeeService) {
+  employeeForm!:FormGroup;
+  constructor(
+    private empService:EmployeeService,
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fb:FormBuilder
+  ) {
    this.getEmployeeLists();
+   this.employeeForm = fb.group({
+    firstName:['',Validators.required],
+    lastName:['',Validators.required],
+    email:['',[Validators.required, Validators.email]],
+    dob:['',Validators.required],
+    gender:['',Validators.required],
+    education:['',Validators.required],
+    experience:['',Validators.required],
+    package:['',Validators.required],
+  })
   }
   getEmployeeLists(){
     this.empService.getEmployees().subscribe((res)=>{
@@ -29,9 +47,11 @@ export class ListsEmployeeComponent {
     })
   }
   // Assinging API Data to mat table datasource
-  ngOnInIt(){
+  ngOnInit() {
     this.getEmployeeLists();
+    this.employeeForm.patchValue(this.data)
   }
+
   deleteEmployee(delID:any){
     this.empService.deleteEmployee(delID).subscribe((res)=>{
       if(res.status==200){
@@ -44,7 +64,7 @@ export class ListsEmployeeComponent {
   }
 
   editEmployee(editRow:any){
-
+      this.dialog.open(AddEditEmployeeComponent,{data:editRow})
   }
   // Pagination
   ngAfterViewInit() {
